@@ -12,13 +12,10 @@ linux:!android:!emscripten {
 	HEADERS += $$PWD/qtaskbarcontrol_x11.h
 	SOURCES += $$PWD/qtaskbarcontrol_x11.cpp
 } else:win32:!winrt {
-	QT += winextras
-
 	HEADERS += $$PWD/qtaskbarcontrol_win.h
 	SOURCES += $$PWD/qtaskbarcontrol_win.cpp
 	RESOURCES += $$PWD/qtaskbarcontrol.qrc
 } else:mac:!ios {
-	QT += macextras
 	LIBS += -framework AppKit
 
 	HEADERS += $$PWD/qtaskbarcontrol_mac.h

@@ -1,5 +1,4 @@
 #include "qtaskbarcontrol_mac.h"
-#include <QtMacExtras>
 #include <QLocale>
 
 #import <AppKit/NSApplication.h>
@@ -23,7 +22,7 @@
 	NSRect bounds = [self bounds];
 	[[NSApp applicationIconImage] drawInRect:bounds
 								  fromRect:NSZeroRect
-								  operation:NSCompositeCopy
+                                  operation:NSCompositingOperationCopy
 								  fraction:1.0];
 	NSRect progressRect = bounds;
 	progressRect.size.width *= 0.8;
@@ -86,7 +85,7 @@ void QMacTaskbarControl::setProgress(bool visible, double value)
 void QMacTaskbarControl::setCounter(bool visible, int value)
 {
 	if(visible)
-		QtMac::setBadgeLabelText(QLocale().toString(value));
+        NSApp.dockTile.badgeLabel = QLocale().toString(value).toNSString();
 	else
-		QtMac::setBadgeLabelText(QString());
+        NSApp.dockTile.badgeLabel = QString().toNSString();
 }
